@@ -5,6 +5,28 @@ date: '2022-06-21'
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set
+library(tidyverse)
+library(billboard)
 ```
+
+```{r}
+x <- wiki_hot_100s |> 
+  as_tibble() 
+```
+
+```{r}
+x |> 
+  group_by(artist) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+```
+```{r}
+x |> 
+  group_by(artist) |> 
+  summarize(appearances = n()) |> 
+  filter(appearances == 1) |> 
+  nrow()
+```
+
 
